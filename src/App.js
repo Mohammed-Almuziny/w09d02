@@ -20,36 +20,14 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        user={user}
-        role={role}
-        setUser={setUser}
-        setToken={setToken}
-        setRole={setRole}
-      />
+      <Header />
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/todos" element={<Todos user={user} token={token} />} />
-        <Route
-          path="/allTodos"
-          element={<AllTodos user={user} token={token} />}
-        />
-        <Route
-          path="/allUsers"
-          element={<AllUsers user={user} token={token} />}
-        />
-        <Route
-          path="/LogIn"
-          element={
-            <Login
-              user={user}
-              setUser={setUser}
-              setRole={setRole}
-              setToken={setToken}
-            />
-          }
-        />
+        <Route path="/todos" element={<Todos />} />
+        <Route path="/allTodos" element={<AllTodos />} />
+        <Route path="/allUsers" element={<AllUsers />} />
+        <Route path="/LogIn" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>
