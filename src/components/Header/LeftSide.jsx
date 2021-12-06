@@ -1,31 +1,35 @@
+
 import React from "react";
-import { Link, IconButton, Button } from "@mui/material";
-import SettingsApplicationsRoundedIcon from "@mui/icons-material/SettingsApplicationsRounded";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "@mui/material";
 
-export const LeftSide = ({ user, setUser, setToken, setRole }) => {
-  const handleLogOut = () => {
-    localStorage.clear();
-    setUser();
-    setToken();
-    setRole();
-  };
+export const  LeftSide = () => {
+  const { role } = useSelector((state) => state.account);
 
-  return user ? (
+
+  console.log(role);
+  return role === "admin" ? (
     <>
-      <h1>{user} </h1>
-
-      <Button color="inherit" onClick={handleLogOut}>
-        log out
-      </Button>
+      <Link color="inherit" underline="none" href="/" mr={2}>
+        home
+      </Link>
+      <Link color="inherit" underline="none" href="/todos" mr={2}>
+        todos
+      </Link>
+      <Link color="inherit" underline="none" href="/allTodos" mr={2}>
+        all todos
+      </Link>
+      <Link color="inherit" underline="none" href="/allUsers" mr={2}>
+        all users
+      </Link>
     </>
   ) : (
     <>
-      <Link color="inherit" underline="none" href="/register" ml={2}>
-        Register
+      <Link color="inherit" underline="none" href="/" mr={2}>
+        home
       </Link>
-
-      <Link color="inherit" underline="none" href="/logIn" ml={2}>
-        Log in
+      <Link color="inherit" underline="none" href="/todos" mr={2}>
+        todos
       </Link>
     </>
   );

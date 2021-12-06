@@ -4,9 +4,6 @@ import {
   Typography,
   Box,
   Toolbar,
-  IconButton,
-  Link,
-  Button,
 } from "@mui/material";
 
 import { RightSide } from "./RightSide";
@@ -22,16 +19,11 @@ export const Header = ({ user, setUser, setToken, role, setRole }) => {
               TodosSite
             </Typography>
 
-            <RightSide role={role} />
+            <LeftSide setUser={setUser} setToken={setToken} setRole={setRole} />
 
             <Typography sx={{ flexGrow: 1 }}></Typography>
 
-            <LeftSide
-              user={user}
-              setUser={setUser}
-              setToken={setToken}
-              setRole={setRole}
-            />
+            <RightSide />
           </Toolbar>
         </AppBar>
       </Box>
