@@ -1,13 +1,10 @@
-
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "@mui/material";
 
-export const  LeftSide = () => {
+export const LeftSide = () => {
   const { role } = useSelector((state) => state.account);
 
-
-  console.log(role);
   return role === "admin" ? (
     <>
       <Link color="inherit" underline="none" href="/" mr={2}>

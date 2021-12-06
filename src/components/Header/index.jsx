@@ -4,7 +4,7 @@ import { AppBar, Typography, Box, Toolbar } from "@mui/material";
 import { RightSide } from "./RightSide";
 import { LeftSide } from "./LeftSide";
 
-export const Header = ({ user, setUser, setToken, role, setRole }) => {
+export const Header = () => {
   return (
     <header className="App">
       <Box sx={{ flexGrow: 1, pb: 4 }}>
@@ -18,11 +18,7 @@ export const Header = ({ user, setUser, setToken, role, setRole }) => {
 
             <Typography sx={{ flexGrow: 1 }}></Typography>
 
-            <RightSide
-              setUser={setUser}
-              setToken={setToken}
-              setRole={setRole}
-            />
+            <RightSide />
           </Toolbar>
         </AppBar>
       </Box>
