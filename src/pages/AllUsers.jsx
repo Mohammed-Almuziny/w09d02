@@ -1,21 +1,27 @@
 import { React, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { Container, Typography, Button } from "@mui/material";
+import { Container } from "@mui/material";
 
 import { UserCard } from "./../components/UserCard";
+import { setUsers } from "./../reducers/users";
 
-export const AllUsers = ({ user, token }) => {
-  const [users, setUsers] = useState([]);
+export const AllUsers = () => {
   const [render, setRender] = useState(0);
 
-  const getTodos = () => {
+  const token = useSelector((state) => state.account.token);
+  const usersList = useSelector((state) => state.users.usersList);
+
+  const dispatch = useDispatch();
+
+  const getTodos = async () => {
     try {
-      axios
+      await axios
         .get(`${process.env.REACT_APP_BASE_URL}/allUsers`, {
           headers: { Authorization: "Bearer " + token },
         })
         .then((result) => {
-          setUsers(result.data);
+          dispatch(setUsers({ usersList: result.data }));
         })
         .catch((err) => {
           console.log(err);
@@ -27,7 +33,6 @@ export const AllUsers = ({ user, token }) => {
 
   useEffect(() => {
     if (token) getTodos();
-    console.log(users);
   }, []);
 
   useEffect(() => {
@@ -35,15 +40,10 @@ export const AllUsers = ({ user, token }) => {
     getTodos();
   }, [render]);
 
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
-
   return (
     <Container>
-      {users.map((user) => (
+      {usersList.map((user) => (
         <UserCard
-          token={token}
           user={user}
           render={render}
           setRender={setRender}

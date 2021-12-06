@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { Typography, Button } from "@mui/material";
 
-export const UserCard = ({ token, user, render, setRender }) => {
-  console.log(user);
+export const UserCard = ({ user, render, setRender }) => {
+  const token = useSelector((state) => state.account.token);
+
   const handleDelete = (userId) => {
     try {
       axios
