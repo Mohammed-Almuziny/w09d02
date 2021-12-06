@@ -1,5 +1,6 @@
 const instiaiState = {
   user: "",
+  role: "",
   token: "",
 };
 
@@ -8,20 +9,24 @@ const account = (state = instiaiState, action) => {
 
   switch (type) {
     case "LOGIN":
-      const { user, token, role } = payload;
+      const { user, role, token } = payload;
       localStorage.setItem("user", user);
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
-      return { user, token, role };
+      console.table(user, role, token);
+      return { user, role, token };
     case "LOGOUT":
       localStorage.clear();
-      return { user: "", token: "", role: "" };
+      return { user: "", role: "", token: "" };
     default:
       return state;
   }
 };
 
+export default account;
+
 export const login = (data) => {
+
   return {
     type: "LOGIN",
     payload: data,
@@ -34,5 +39,3 @@ export const logout = (data) => {
     payload: data,
   };
 };
-
-export default account;

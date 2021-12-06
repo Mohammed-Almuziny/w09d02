@@ -1,12 +1,12 @@
-import { createStore, combineRedcers } from "redux";
+import { createStore, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import account from "./account";
 
-const reducer = combineRedcers({ account });
+const reducer = combineReducers({ account });
 
 const store = () => {
   return createStore(reducer, composeWithDevTools);
 };
 
-export default store;
+export default store();

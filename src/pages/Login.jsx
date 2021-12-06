@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   Container,
   Box,
@@ -10,11 +11,14 @@ import {
   Button,
 } from "@mui/material";
 
+import { login } from "./../reducers/account";
+
 export const Login = ({ setUser, setRole, setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     try {
@@ -23,12 +27,21 @@ export const Login = ({ setUser, setRole, setToken }) => {
       axios
         .post(`${process.env.REACT_APP_BASE_URL}/login`, { email, password })
         .then((response) => {
-          setUser(response.data.result.email);
-          localStorage.setItem("user", response.data.result.email);
-          setRole(response.data.result.role.role);
-          localStorage.setItem("role", response.data.result.role.role);
-          setToken(response.data.token);
-          localStorage.setItem("token", response.data.token);
+          // setUser(response.data.result.email);
+          // localStorage.setItem("user", response.data.result.email);
+          // setRole(response.data.result.role.role);
+          // localStorage.setItem("role", response.data.result.role.role);
+          // setToken(response.data.token);
+          // localStorage.setItem("token", response.data.token);
+
+          const data = {
+            user: response.data.result.email,
+            role: response.data.result.role.role,
+            token: response.data.token,
+          };
+
+          console.table(data);
+          dispatch(login({ ...data }));
 
           navigate("/");
         })
