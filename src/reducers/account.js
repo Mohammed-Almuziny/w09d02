@@ -1,7 +1,7 @@
 const instiaiState = {
-  user: "",
-  role: "",
-  token: "",
+  user: localStorage.getItem("user"),
+  role: localStorage.getItem("role"),
+  token: localStorage.getItem("token"),
 };
 
 const account = (state = instiaiState, action) => {

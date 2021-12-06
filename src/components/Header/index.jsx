@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  AppBar,
-  Typography,
-  Box,
-  Toolbar,
-} from "@mui/material";
+import { AppBar, Typography, Box, Toolbar } from "@mui/material";
 
 import { RightSide } from "./RightSide";
 import { LeftSide } from "./LeftSide";
@@ -19,11 +14,15 @@ export const Header = ({ user, setUser, setToken, role, setRole }) => {
               TodosSite
             </Typography>
 
-            <LeftSide setUser={setUser} setToken={setToken} setRole={setRole} />
+            <LeftSide />
 
             <Typography sx={{ flexGrow: 1 }}></Typography>
 
-            <RightSide />
+            <RightSide
+              setUser={setUser}
+              setToken={setToken}
+              setRole={setRole}
+            />
           </Toolbar>
         </AppBar>
       </Box>
