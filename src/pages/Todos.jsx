@@ -45,14 +45,13 @@ export const Todos = () => {
     <Container>
       {todos.map((todo) => (
         <TodoCard
-          token={token}
           todo={todo}
           render={render}
           setRender={setRender}
           key={todo._id}
         />
       ))}
-      <AddTodo token={token} render={render} setRender={setRender} />
+      <AddTodo render={render} setRender={setRender} />
     </Container>
   ) : (
     <Typography>you have to log in</Typography>

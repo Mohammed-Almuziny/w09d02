@@ -1,8 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { Typography, Button } from "@mui/material";
 
-export const TodoCard = ({ token, todo, render, setRender }) => {
+export const TodoCard = ({ todo, render, setRender }) => {
+  const { token } = useSelector((state) => state.account);
+  
   const handleUpdate = (taskId) => {
     try {
       let taskName = prompt("Please enter your taks name");

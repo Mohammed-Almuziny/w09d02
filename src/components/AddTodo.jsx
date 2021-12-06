@@ -1,10 +1,13 @@
 import { React, useState } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { TextField, Button } from "@mui/material";
 
-export const AddTodo = ({ token, render, setRender }) => {
+export const AddTodo = ({ render, setRender }) => {
   const [addMore, setAddMore] = useState(false);
   const [taskName, setTaskName] = useState();
+
+  const { token } = useSelector((state) => state.account);
 
   const handleSubmit = (e) => {
     try {
