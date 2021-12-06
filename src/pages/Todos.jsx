@@ -1,13 +1,19 @@
 import { React, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { Container, Typography, Button } from "@mui/material";
 
 import { TodoCard } from "./../components/TodoCard";
 import { AddTodo } from "./../components/AddTodo";
+import { set } from "./../reducers/tasks";
 
-export const Todos = ({ user, token }) => {
-  const [todos, setTodos] = useState([]);
+export const Todos = () => {
   const [render, setRender] = useState(0);
+
+  const { user, token } = useSelector((state) => state.account);
+  const todos = useSelector((state) => state.tasks.todos);
+
+  const dispatch = useDispatch();
 
   const getTodos = () => {
     try {
@@ -16,7 +22,7 @@ export const Todos = ({ user, token }) => {
           headers: { Authorization: "Bearer " + token },
         })
         .then((result) => {
-          setTodos(result.data);
+          dispatch(set({ todos: result.data }));
         })
         .catch((err) => {
           console.log(err);

@@ -7,7 +7,6 @@ const tasks = (state = instiaiState, action) => {
 
   switch (type) {
     case "SET":
-      console.log(payload);
       const { todos } = payload;
       return { todos };
     default:
